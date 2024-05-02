@@ -52,9 +52,6 @@ const addSubmitListener = () => {
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        // displayRamens();
-        // newImageLink.append(img);
-        // submitButton;
       });
   });
 };
