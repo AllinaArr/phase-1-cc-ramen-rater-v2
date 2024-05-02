@@ -25,6 +25,38 @@ const handleClick = (ramen) => {
 
 const addSubmitListener = () => {
   // Add code
+  let formNewRamen = document.querySelector("#new-ramen");
+
+  formNewRamen.addEventListener("submit", (event) => {
+    event.preventDefault();
+    let nameofANewRamen = document.querySelector("#new-name").value;
+    let nameOfANewRest = document.querySelector("#new-restaurant").value;
+    let newImageLink = document.querySelector("#new-image").value;
+    let newRating = document.querySelector("#new-rating").value;
+    let newComment = document.querySelector("#new-comment").value;
+
+    fetch("http://localhost:3000/ramens", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        name: nameofANewRamen,
+        restaurant: nameOfANewRest,
+        image: newImageLink,
+        rating: newRating,
+        comment: newComment,
+      }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        // displayRamens();
+        // newImageLink.append(img);
+        // submitButton;
+      });
+  });
 };
 
 const displayRamens = () => {
@@ -46,6 +78,8 @@ const main = () => {
   displayRamens();
   // Invoke addSubmitListener here
   handleClick();
+
+  addSubmitListener();
 };
 
 main();
